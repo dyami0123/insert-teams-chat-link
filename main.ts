@@ -47,15 +47,11 @@ class parseTeamsLinkModal extends Modal {
 				let chatId = this.extractChatId(input.value);
 				let chatType = this.extractChatType(input.value);
 
-				console.log(`Chat ID: ${chatId}`);
-				console.log(`Chat Type: ${chatType}`);
-
 				if (!chatId || !chatType) {
 					new Notice("Invalid link. Please enter a valid Teams chat link.");
 					return
 				}
 				let chatLink = this.createChatLink(chatId, chatType);
-				console.log(`Chat Link: ${chatLink}`);
 				this.onSubmit(chatLink);
 			} else {
 				new Notice("Invalid link. Please enter a valid Teams chat link.");
@@ -93,10 +89,7 @@ class parseTeamsLinkModal extends Modal {
 		// the link above should be valid
 		let chatTypeRegex = /19:[a-zA-Z0-9-]+(?:_[a-zA-Z0-9-]+)?(@thread\.v2|@unq\.gbl\.spaces)/;
 		let match = chatTypeRegex.exec(link);
-		console.log(`Link: ${link}`);
-		console.log(`Match: ${match}`);
 		if (match) {
-			console.log(`Match[1]: ${match[1]}`);
 			return match[1];
 		} else {
 			return null;
